@@ -14,10 +14,13 @@ namespace SimpleQa.Entities
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(200)]
         public string Title { get; set; }
 
-        [MaxLength(200)]
+        [MaxLength(400)]
         public string Message { get; set; }
+
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
     }
 }

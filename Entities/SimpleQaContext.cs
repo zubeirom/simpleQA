@@ -15,6 +15,6 @@ namespace SimpleQa.Entities
         }
 
         public DbSet<Question> Question { get; set; }
-        public DbSet<Comment> Commnet { get; set; } 
+        public DbSet<Comment> Comment { get; set; } 
     }
 }
