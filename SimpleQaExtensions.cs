@@ -11,6 +11,10 @@ namespace SimpleQa
         public static void EnsureSeedDataForContext(this SimpleQaContext context)
         {
 
+            if (context.Question.Any())
+            {
+                return;
+            }
 
             var questions = new List<Question>()
             {
@@ -65,6 +69,9 @@ namespace SimpleQa
                     }
                 }
             };
+
+            context.Question.AddRange(questions);
+            context.SaveChanges();
         }
     }
 }
