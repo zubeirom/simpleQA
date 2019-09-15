@@ -39,8 +39,10 @@ namespace SimpleQa
             else
             {
                 app.UseHsts();
+                app.UseExceptionHandler("/error");
             }
-
+            
+            app.UseStatusCodePages();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
