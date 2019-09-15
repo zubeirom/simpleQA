@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CityInfo.API.Services
+namespace SimpleQa.Services
 {
-    public interface ICityInfoRepository
+    public interface ISimpleQaRepository
     {
-        bool QuestionExists(int questionId);
+        // bool QuestionExists(int questionId);
 
-        IEnumerable<Question> GetQuestions();
+        // IEnumerable<Question> GetQuestions();
 
-        Question GetQuestion(int questionId);
+        // Question GetQuestion(int questionId);
 
-        IEnumerable<Comment> GetComments(int questionId);
+        // IEnumerable<Comment> GetComments(int questionId);
 
-        Question GetComment(int questionId, int commentId);
+        // Question GetComment(int questionId, int commentId);
 
     }
 }

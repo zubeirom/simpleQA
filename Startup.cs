@@ -11,6 +11,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SimpleQa.Services;
+using SimpleQa.Entities;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace SimpleQa
 {
@@ -27,6 +31,15 @@ namespace SimpleQa
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddMvcOptions(o => o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter()));
+
+            services.AddScoped<ISimpleQaRepository, SimpleQaRepository>();
+
+            var connectionString = Configuration["connectionStrings:simpleQaConnectionString"];
+
+            services.AddDbContext<SimpleQaContext>(o => o.UseSqlServer(connectionString));
+
+            services.AddAutoMapper(typeof(Startup));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
