@@ -16,7 +16,7 @@ namespace SimpleQa.Controllers
         private ISimpleQaRepository _simpleQa;
         private readonly IMapper _mapper;
 
-        private QuestionsController(ISimpleQaRepository simpleQa, IMapper mapper)
+        public QuestionsController(ISimpleQaRepository simpleQa, IMapper mapper)
         {
             _simpleQa = simpleQa;
             _mapper = mapper;
@@ -25,9 +25,38 @@ namespace SimpleQa.Controllers
         [HttpGet()]
         public IActionResult Get()
         {
-            var questions = _simpleQa.GetQuestions();
-            var results = _mapper.Map<IEnumerable<QuestionDto>>(questions);
-            return Ok(results);
+            try
+            {
+                var questions = _simpleQa.GetQuestions();
+                var results = _mapper.Map<IEnumerable<QuestionDto>>(questions);
+                return Ok(results);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("ERROR: " + e);
+                return StatusCode(500, e);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            try
+            {
+                if(!_simpleQa.QuestionExists(id))
+                {
+                    return NotFound();
+                }
+
+                var question = _simpleQa.GetQuestion(id);
+                var result = _mapper.Map<QuestionDto>(question);
+                return Ok(result);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("ERROR: " + e.ToString());
+                return StatusCode(500, e);
+            }
         }
     }
 }

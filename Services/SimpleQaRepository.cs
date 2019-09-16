@@ -23,12 +23,12 @@ namespace SimpleQa.Services
 
         public IEnumerable<Question> GetQuestions()
         {
-            return _context.Question.OrderBy(q => q.Created).ToList();
+            return _context.Question.Include(q => q.Comments).OrderBy(q => q.Created).ToList();
         }
 
         public Question GetQuestion(int questionId)
         {
-            return _context.Question.Where(q => q.Id == questionId).FirstOrDefault();
+            return _context.Question.Include(q => q.Comments).Where(q => q.Id == questionId).FirstOrDefault();
         }
     }
 }

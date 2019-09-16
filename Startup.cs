@@ -25,7 +25,7 @@ namespace SimpleQa
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -43,7 +43,7 @@ namespace SimpleQa
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SimpleQaContext simpleQaContext)
         {
             if (env.IsDevelopment())
             {
@@ -51,12 +51,14 @@ namespace SimpleQa
             }
             else
             {
-                app.UseHsts();
+                app.UseHsts();  // Only useful when having web server with ssl
                 app.UseExceptionHandler("/error");
             }
+
+            simpleQaContext.EnsureSeedDataForContext();
             
             app.UseStatusCodePages();
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection(); // Only useful when having web server with ssl
             app.UseMvc();
         }
     }
