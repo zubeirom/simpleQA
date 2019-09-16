@@ -10,6 +10,7 @@ namespace SimpleQa.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Message { get; set; }
+        public DateTime Created { get; set; }
         public ICollection<CommentDto> Comments { get; set; } = new List<CommentDto>();
 
     }

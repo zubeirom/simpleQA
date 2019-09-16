@@ -8,15 +8,15 @@ namespace SimpleQa.Services
 {
     public interface ISimpleQaRepository
     {
-        // bool QuestionExists(int questionId);
+        bool QuestionExists(int questionId);
 
-        // IEnumerable<Question> GetQuestions();
+        IEnumerable<Question> GetQuestions();
 
-        // Question GetQuestion(int questionId);
+        Question GetQuestion(int questionId);
 
         // IEnumerable<Comment> GetComments(int questionId);
 
-        // Question GetComment(int questionId, int commentId);
+        // Comment GetComment(int questionId, int commentId);
 
     }
 }

@@ -10,7 +10,6 @@ namespace SimpleQa.Entities
     {
         public SimpleQaContext(DbContextOptions<SimpleQaContext> options) : base(options)
         {
-            Database.EnsureCreated();
             Database.Migrate();
         }
 

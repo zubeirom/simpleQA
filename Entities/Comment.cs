@@ -17,5 +17,7 @@ namespace SimpleQa.Entities
         [MaxLength(400)]
         public string Content { get; set; }
 
+        public DateTime Created { get; set; }
+
     }
 }
