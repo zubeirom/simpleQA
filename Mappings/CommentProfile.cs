@@ -8,6 +8,11 @@ namespace SimpleQa.Mappings
 {
     public class CommentProfile : Profile
     {
-        
+        public CommentProfile()
+        {
+            CreateMap<Entities.Comment, Models.CommentDto>();
+            CreateMap<Models.CommentMutDto, Entities.Comment>();
+            CreateMap<Entities.Comment, Models.CommentMutDto>();
+        }
     }
 }
